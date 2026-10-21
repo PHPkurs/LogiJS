@@ -14,7 +14,15 @@ copy('views/librarySketches','librarySketches');
 copy('views/css','css');
 copy('libraries','libraries');
 copy('javascripts','javascripts');
-const html = pug.renderFile(path.join(root,'views/logijs.pug'), {no_login:true, pretty:true});
+const html = pug.renderFile(
+  path.join(root, 'views/logijs.pug'),
+  {
+    no_login: true,
+    pretty: true,
+    sketchData: { sketches: [] },
+    images: []
+  }
+);
 fs.writeFileSync(path.join(out,'index.html'), html.replace(/href="\/"/g, 'href="./"'));
 fs.writeFileSync(path.join(out,'.nojekyll'), '');
 console.log('Built GitHub Pages files in dist/');
